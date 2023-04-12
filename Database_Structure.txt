@@ -1,0 +1,7 @@
+I plan to structure the database in the following format:
+
+Name of Bot  | Maximum Rating | Games Played | Win Rate | Total Playing time | Total Time on TV
+Super-Sketchy       3301            1984         100%            2024                 876
+                                                (bonus points if you get the reference!)
+
+As of the current moment, I am just planning to have the bullet ratings, but if this works, I can expand it to make it for all of the time controls (and possibly variants!)
