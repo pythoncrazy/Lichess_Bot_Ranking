@@ -1,7 +1,7 @@
 # Imports
 import berserk
 import json
-import supabase
+from supabase import create_client, Client
 
 #Logging into the lichess account
 with open('./lichess.token') as f:
@@ -9,9 +9,18 @@ with open('./lichess.token') as f:
 session = berserk.TokenSession(token)
 client = berserk.clients.Bots(session)
 
+#getting logged into supabase
+with open('./supabase.url') as f:
+    url = f.read()
+with open('./supabase.key') as f:
+    key = f.read()
+supabase: Client = create_client(url, key)
+
 #get the list of all 2000000000000 bots accounts online
 # I do realize that there could one day be more than 200000000000 bot accounts online, but it is very unlikely
 online_bots = client.get_online(nb=20000000000)
 for i in online_bots:
     i = i['id']
     print(i)
+
+
