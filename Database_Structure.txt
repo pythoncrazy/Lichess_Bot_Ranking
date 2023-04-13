@@ -1,7 +1,10 @@
 I plan to structure the database in the following format:
 
-Name of Bot  | Maximum Rating | Games Played | Win Rate | Total Playing time | Total Time on TV
-Super-Sketchy       3301            1984         100%            2024                 876
+Name of Bot  | Maximum Rating | Games Played | Prog | Total Playing time | Total Time on TV
+Super-Sketchy       3301            1984        +69          2024                 876
                                                 (bonus points if you get the reference!)
-
+And now you're walking through the door! Just like 2024!
 As of the current moment, I am just planning to have the bullet ratings, but if this works, I can expand it to make it for all of the time controls (and possibly variants!)
+
+Update (4/13/23 12:55:53 AM):
+I have decided that this database thing is much too hard, I am just going to store the data in a csv, tab-separated. (tsv is the right term, but I don't want to call it that)
