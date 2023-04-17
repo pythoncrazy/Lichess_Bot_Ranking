@@ -8,11 +8,6 @@ import pandas as pd
 app = Flask(__name__)
 
 
-# reading the data in the csv file
-df = pd.read_csv('bullet.csv',header=0)
-df.to_csv('bullet.csv', index=None)
-
-
 # route to html page - "table"
 @app.route('/')
 @app.route('/table')
