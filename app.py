@@ -8,13 +8,14 @@ import pandas as pd
 app = Flask(__name__)
 
 
-# route to html page - "table"
+# route to the bullet current ratings
+#TODO: expand to all rating systems, as well as current and maximum rating
 @app.route('/')
-@app.route('/table')
+@app.route('/bullet_curr')
 def table():
 	
 	# converting csv to html
-	data = pd.read_csv('bullet.csv',header=0)
+	data = pd.read_csv('bullet_sorted_by_current_rating.csv',header=0)
 	return render_template('table.html', tables=[data.to_html()], titles=[''])
 
 
