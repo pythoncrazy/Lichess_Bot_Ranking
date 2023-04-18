@@ -8,6 +8,8 @@ with open('./lichess.token') as f:
 session = berserk.TokenSession(token)
 client = berserk.clients.Bots(session)
 
+variants = ["bullet","blitz","rapid"]
+
 def create_bot_txt(variant): 
 
     #get the list of all 2000000000000 bots accounts online
@@ -30,6 +32,6 @@ def create_bot_txt(variant):
     with open(variant+"/"+variant+'_bot.names','w') as f:
         for i in name_of_bot_accounts:
             f.write(i+"\n")
-create_bot_txt("bullet")
-create_bot_txt("blitz")
-create_bot_txt("rapid")
+
+for variant in variants:
+    make_leaderboard_txt(variant)
