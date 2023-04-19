@@ -12,7 +12,10 @@ app = Flask(__name__)
 #TODO: expand to all rating systems, as well as current and maximum rating
 #DONE :)
 #TODO: make homepage
+#DONE :)
+
 @app.route('/')
+@app.route('/home')
 def welcome_page():
     return render_template('Welcome.html')
 
