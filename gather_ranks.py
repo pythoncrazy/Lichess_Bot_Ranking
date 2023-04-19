@@ -32,6 +32,7 @@ def create_bot_txt(variant):
     with open(variant+"/"+variant+'_bot.names','w') as f:
         for i in name_of_bot_accounts:
             f.write(i+"\n")
+    print(variant,"done!")
 
 for variant in variants:
-    make_leaderboard_txt(variant)
+    create_bot_txt(variant)

@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html>
-    <title> Lichess Bot Ranking </title>   <!--Make this site look better, but is cool for now-->
+    <head>
+        <title> Lichess Bot Ranking </title>   <!--Make this site look better, but is cool for now-->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+        <style>
+            body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+        </style>
+    </head>
     <body>
         <h1>Lichess Bot Ranking</h1>
 
@@ -9,5 +18,26 @@
             You can email me at encryptprogramming @ mgail.com. Of course, to prevent spam, just rearrange the letters to make gmail.com.
             If you want me to add a variant or other information, just message me on lichess at @pinakp7.
         </p>
+        <a href=" {{ url_for('bullet_max_rating') }}"> Visit the bullet ranking, based on maximum rating of all time.</a>
+        <br>
+        <hr>
+        <br>
+        <a href=" {{ url_for('bullet_current_rating') }}"> Visit the bullet ranking, based on the current rating.</a>
+        <br>
+        <hr>
+        <br>
+        <a href=" {{ url_for('blitz_max_rating') }}"> Visit the blitz ranking, based on maximum rating of all time.</a>
+        <br>
+        <hr>
+        <br>
+        <a href=" {{ url_for('blitz_current_rating') }}"> Visit the blitz ranking, based on the current rating.</a>
+        <br>
+        <hr>
+        <br>
+        <a href=" {{ url_for('rapid_max_rating') }}"> Visit the rapid ranking, based on maximum rating of all time.</a>
+        <br>
+        <hr>
+        <br>
+        <a href=" {{ url_for('rapid_current_rating') }}"> Visit the rapid ranking, based on the current rating.</a>
     </body>
 </html>

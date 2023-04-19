@@ -18,7 +18,8 @@ def make_leaderboard_txt(variant):
         csv_output = csv.writer(f_output)
         csv_output.writerow(["Name","Current Rating","Maximum Rating","Total Games Played","Rating Progression","Total Playing Time","Total Time on TV"])
         for name_of_bot in name_of_bot_accounts: # iterate over all of the bot accounts
-            print(name_of_bot,i)
+            if(i%10==0):
+                print(i, "done!")
             i+=1
             #rating information
             rating_stats = client.users.get_performance_statistics(name_of_bot,variant) #for some reason, the pypi berserk package does not have this function. I have manually added it from their GitHub repo: https://github.com/rhgrant10/berserk/blob/master/berserk/clients.py#L329
@@ -38,6 +39,7 @@ def make_leaderboard_txt(variant):
             data = [name_of_bot,current_rating,max_rating, games_played, rating_progress, total_play_time,tv_play_time]
             
             csv_output.writerow(data)
+    print(variant,"done!")
 
 
 for variant in variants:
