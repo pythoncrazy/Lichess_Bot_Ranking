@@ -126,7 +126,7 @@ def get_data():
     print("Doing ", variant, " currently!")
     create_bot_txt(variant)
     make_leaderboard_txt(variant)
-    make_leaderboard_txt(variant)
+    sort_to_csv(variant)
     print("finished", variant)
   time.sleep(3600)
 
