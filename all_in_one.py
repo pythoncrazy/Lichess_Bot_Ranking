@@ -19,11 +19,11 @@ session = berserk.TokenSession(token)
 variants = ["bullet", "blitz", "rapid"]
 
 
+#get the list of all 2000000000000 bots accounts online
+# I do realize that there could one day be more than 200000000000 bot accounts online, but it is very unlikely  
+client_create = berserk.clients.Bots(session)
+online_bots = client_create.get_online(nb=20000000000)
 def create_bot_txt(variant):
-  client = berserk.clients.Bots(session)
-  #get the list of all 2000000000000 bots accounts online
-  # I do realize that there could one day be more than 200000000000 bot accounts online, but it is very unlikely
-  online_bots = client.get_online(nb=20000000000)
 
   name_of_bot_accounts = set(
     line.strip() for line in open(variant + "/" + variant + '_bot.names')
@@ -51,12 +51,12 @@ def create_bot_txt(variant):
   print(" Made list of bots: done!")
 
 
-def make_leaderboard_txt(variant):
-  client = berserk.Client(session)
-  name_of_bot_accounts = list(
-    line.strip() for line in open(variant + "/" + variant + '_bot.names')
-  )  # Maybe not the most efficient way of doing this, but it works and I want to do it this way.
 
+client_make = berserk.Client(session)
+name_of_bot_accounts = list(
+  line.strip() for line in open(variant + "/" + variant + '_bot.names')
+)  # Maybe not the most efficient way of doing this, but it works and I want to do it this way.
+def make_leaderboard_txt(variant):
   i = 0
   with open(
       variant + "/" + variant + ".csv", 'w',
