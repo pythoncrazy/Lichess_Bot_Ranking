@@ -61,4 +61,4 @@ def rapid_max_rating():
 	data = pd.read_csv('rapid/rapid_sorted_by_max_rating.csv',header=0)
 	return render_template('Maximum.html', tables=[data.to_html()], titles=[''])
 
-app.run(host="localhost", port=int("5000"))
+#app.run(host="localhost", port=int("5000")) For Hosting on Render
