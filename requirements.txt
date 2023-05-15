@@ -2,6 +2,7 @@ blinker
 click
 colorama
 Flask
+Gunicorn
 importlib-metadata
 itsdangerous
 Jinja2
