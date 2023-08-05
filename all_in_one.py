@@ -12,13 +12,13 @@ with open('./lichess.token') as f:
 session = berserk.TokenSession(token)
 
 variants = [
-    "bullet", "blitz", "rapid", "classical", "correspondence", "crazyhouse"
+    "blitz","bullet","chess960","classical","correspondence","rapid"
 ]
 
 #get the list of all 2000000000000 bots accounts online
 # I do realize that there could one day be more than 200000000000 bot accounts online, but it is very unlikely
 client_create = berserk.clients.Bots(session)
-online_bots = client_create.get_online(nb=20000000000)
+online_bots = client_create.get_online_bots(limit=20000000000)
 
 
 def create_bot_txt(variant):
@@ -30,9 +30,11 @@ def create_bot_txt(variant):
     for i in online_bots:
         name_of_bot = i['id']
         #print(name_of_bot,i.keys())
-        if (
-                i["perfs"][variant]["rd"] < 100
-        ):  # filter out the bot accounts that are inactive in bullet. I choose 100 because I feel that most active bots can reach sub 100 rd. I did not choose 75, since some bots don't always get to play other bots at their rating. I feel very strongly on this, but will most likely change it at some future point in time.
+        try:
+            i["perfs"][variant]["rd"]
+        except:
+            continue
+        if (i["perfs"][variant]["rd"] < 100):  # filter out the bot accounts that are inactive in bullet. I choose 100 because I feel that most active bots can reach sub 100 rd. I did not choose 75, since some bots don't always get to play other bots at their rating. I feel very strongly on this, but will most likely change it at some future point in time.
             try:
                 if (
                         i["tosViolation"]
@@ -70,9 +72,9 @@ def make_leaderboard_txt(variant):
                 print(i, "done!")
             i += 1
             #rating information
-            rating_stats = client_make.users.get_performance_statistics(
+            rating_stats = client_make.users.get_user_performance(
                 name_of_bot, variant
-            )  #for some reason, the pypi berserk package does not have this function. I have manually added it from their GitHub repo: https://github.com/rhgrant10/berserk/blob/master/berserk/clients.py#L329
+            )  #I forgot lichess maintains their own berserk package! very nice
             max_rating = rating_stats["stat"]["highest"]["int"]
             current_rating = rating_stats["perf"]["glicko"]["rating"]
             games_played = rating_stats["stat"]["count"][
@@ -83,7 +85,7 @@ def make_leaderboard_txt(variant):
             if ("playTime" in playing_stats.keys()):
                 total_play_time = playing_stats["playTime"]["total"]
                 tv_play_time = playing_stats["playTime"]["tv"]
-            else:
+            else: #some bots have never been on botTV sadge
                 total_play_time = 0
                 tv_play_time = 0
 
@@ -126,17 +128,19 @@ def get_data():
         make_leaderboard_txt(variant)
         sort_to_csv(variant)
         print("finished", variant)
-    time.sleep(3600)
+    print("All done, waiting for 10 minutes.")
+    time.sleep(600)
+    
 
 
 x = 0
 mult = 1.2
 while True:
-    try:
-        get_data()
-        x = 0
-    except Exception as e:
-        x += 1
-        print(e)
-        print("backing off")
-        time.sleep(3600 + (mult)**x)
+    # try:
+    get_data()
+    x = 0
+    # except Exception as e:
+    #     x += 1
+    #     print(e)
+    #     print("backing off")
+    #     time.sleep(3600 + (mult)**x)
