@@ -16,3 +16,38 @@ Press CTRL+C to quit
 127.0.0.1 - - [05/Aug/2023 00:19:28] "GET /home HTTP/1.1" 200 -
 127.0.0.1 - - [05/Aug/2023 00:19:30] "GET /blitz_current HTTP/1.1" 200 -
 127.0.0.1 - - [05/Aug/2023 00:19:31] "GET /home HTTP/1.1" 200 -
+127.0.0.1 - - [05/Aug/2023 00:38:05] "GET /home HTTP/1.1" 200 -
+127.0.0.1 - - [05/Aug/2023 00:38:05] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [05/Aug/2023 00:38:33] "GET /bullet_max HTTP/1.1" 200 -
+127.0.0.1 - - [05/Aug/2023 00:38:33] "GET /style.css HTTP/1.1" 404 -
+Doing  blitz  currently!
+ Made list of bots: done!
+0 done!
+Traceback (most recent call last):
+  File "all_in_one.py", line 140, in <module>
+    get_data()
+  File "all_in_one.py", line 128, in get_data
+    make_leaderboard_txt(variant)
+  File "all_in_one.py", line 75, in make_leaderboard_txt
+    rating_stats = client_make.users.get_user_performance(
+  File "/home/supersketchy/.local/lib/python3.8/site-packages/berserk/clients/users.py", line 130, in get_user_performance
+    return self._r.get(path, fmt=JSON_LIST, converter=models.User.convert)
+  File "/home/supersketchy/.local/lib/python3.8/site-packages/berserk/session.py", line 177, in get
+    return self.request(
+  File "/home/supersketchy/.local/lib/python3.8/site-packages/berserk/session.py", line 102, in request
+    return fmt.handle(response, is_stream=stream, converter=converter)
+  File "/home/supersketchy/.local/lib/python3.8/site-packages/berserk/formats.py", line 44, in handle
+    return converter(self.parse(response))
+  File "/home/supersketchy/.local/lib/python3.8/site-packages/berserk/formats.py", line 87, in parse
+    return response.json(cls=self.decoder)
+  File "/usr/local/lib/python3.8/dist-packages/requests/models.py", line 971, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/usr/lib/python3/dist-packages/simplejson/__init__.py", line 535, in loads
+    return cls(encoding=encoding, **kw).decode(s)
+TypeError: __init__() got an unexpected keyword argument 'encoding'
+127.0.0.1 - - [05/Aug/2023 00:40:25] "GET /home HTTP/1.1" 200 -
+127.0.0.1 - - [05/Aug/2023 00:40:25] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [05/Aug/2023 00:40:40] "GET /bullet_current HTTP/1.1" 200 -
+127.0.0.1 - - [05/Aug/2023 00:40:40] "GET /style.css HTTP/1.1" 404 -
+127.0.0.1 - - [05/Aug/2023 12:36:40] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [05/Aug/2023 12:36:40] "GET /favicon.ico HTTP/1.1" 404 -
