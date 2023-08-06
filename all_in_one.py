@@ -1,3 +1,4 @@
+#!/home/supersketchy/anaconda3/envs/lirank/bin/python
 import csv
 import time
 # importing pandas
@@ -129,7 +130,7 @@ def get_data():
         sort_to_csv(variant)
         print("finished", variant)
     print("All done, waiting for 10 minutes.")
-    time.sleep(600)
+    time.sleep(1800)
     
 
 

@@ -1,3 +1,4 @@
+#!/home/supersketchy/anaconda3/envs/lirank/bin/python
 # importing flask
 from flask import Flask, render_template
 
