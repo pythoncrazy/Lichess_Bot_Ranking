@@ -129,7 +129,7 @@ def get_data():
         make_leaderboard_txt(variant)
         sort_to_csv(variant)
         print("finished", variant)
-    print("All done, waiting for 10 minutes.")
+    print("All done, waiting for 30 minutes.")
     time.sleep(1800)
     
 
