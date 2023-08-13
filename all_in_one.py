@@ -3,7 +3,7 @@ import csv
 import time
 # importing pandas
 import pandas as pd
-
+from copy import deepcopy
 # Imports
 import berserk  # I am too lazy to make the api calls directly
 
@@ -19,6 +19,7 @@ variants = [
 #get the list of all 2000000000000 bots accounts online
 # I do realize that there could one day be more than 200000000000 bot accounts online, but it is very unlikely
 client_create = berserk.clients.Bots(session)
+client = berserk.clients.users(session)
 online_bots = client_create.get_online_bots(limit=20000000000)
 
 
@@ -27,7 +28,23 @@ def create_bot_txt(variant):
     name_of_bot_accounts = set(
         line.strip() for line in open(variant + "/" + variant + '_bot.names')
     )  # Read in all of the previous bot accounts into a set. This allows for any bots I manually add to be kept, but not have duplicates.
-
+    temp = []
+    for i in name_of_bot_accounts:
+        name_of_bot = client.get_public_data(i)['id']
+        #print(name_of_bot,i.keys())
+        try:
+            i["perfs"][variant]["rd"]
+        except:
+            continue
+        if (i["perfs"][variant]["rd"] < 100):  # filter out the bot accounts that are inactive in bullet. I choose 100 because I feel that most active bots can reach sub 100 rd. I did not choose 75, since some bots don't always get to play other bots at their rating. I feel very strongly on this, but will most likely change it at some future point in time.
+            try:
+                if (
+                        i["tosViolation"]
+                ):  #exclude bots that have a TOS Violation, since they shouldn't be on the list anyways
+                    continue
+            except:
+                temp.add(name_of_bot)
+    name_of_bot_accounts = temp.deepcopy()
     for i in online_bots:
         name_of_bot = i['id']
         #print(name_of_bot,i.keys())
@@ -129,8 +146,8 @@ def get_data():
         make_leaderboard_txt(variant)
         sort_to_csv(variant)
         print("finished", variant)
-    print("All done, waiting for 30 minutes.")
-    time.sleep(1800)
+    print("All done, waiting for 180 minutes.")
+    time.sleep(10800)
     
 
 
